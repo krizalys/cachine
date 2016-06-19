@@ -1,0 +1,20 @@
+language: 'node_js'
+
+node_js:
+    - '6.0'
+
+# Require libmagick++-dev & a C++11 compliant compiler.
+addons:
+    apt:
+      sources:
+          - 'ubuntu-toolchain-r-test'
+      packages:
+          - 'g++-4.8'
+          - 'libmagick++-dev'
+
+env: 'CXX=g++-4.8'
+
+before_install: 'npm install'
+
+script:         'npm run test-codecov'
+after_script:   'bash <(curl --silent https://codecov.io/bash)'
