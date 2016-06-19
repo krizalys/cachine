@@ -1,0 +1,49 @@
+{
+    "name":        "cachine",
+    "version":     "1.0.0-alpha.1",
+    "description": "Krizalys' Cachine service.",
+    "homepage":    "http://www.krizalys.com/",
+
+    "keywords": [
+        "krizalys",
+        "cache",
+        "thumb",
+        "thumbnail",
+        "node.js"
+    ],
+
+    "author": {
+        "name":  "Christophe Vidal",
+        "email": "support@krizalys.com",
+        "url":   "http://www.krizalys.com/"
+    },
+
+    "engines": {
+        "node": ">= 6.0",
+        "npm":  ">= 3.0"
+    },
+
+    "dependencies": {
+        "aws-sdk":            "2.3.16",
+        "imagemagick-native": "1.9.2"
+    },
+
+    "devDependencies": {
+        "chai":             "3.5.0",
+        "chai-as-promised": "5.3.0",
+        "eslint":           "2.11.0",
+        "istanbul":         "0.4.3",
+        "leche":            "2.1.1",
+        "mocha":            "2.5.3",
+        "sinon":            "1.17.4",
+        "sinon-chai":       "2.8.0"
+    },
+
+    "scripts": {
+        "cover-html":   "./node_modules/istanbul/lib/cli.js cover --include-all-sources ./node_modules/.bin/_mocha -- './test/**/*Test.js'",
+        "cover":        "./node_modules/istanbul/lib/cli.js cover --include-all-sources ./node_modules/.bin/_mocha --report lcovonly -- './test/**/*Test.js'",
+        "lint":         "./node_modules/eslint/bin/eslint.js ./lib ./test",
+        "test":         "./node_modules/mocha/bin/mocha './test/**/*Test.js'",
+        "build-travis": "npm run lint && npm run cover"
+    }
+}
