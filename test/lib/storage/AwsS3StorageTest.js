@@ -94,7 +94,7 @@ describe("AwsS3Storage", () => {
     });
 
     describe("#createReadStream()", () => {
-        it("should return a stream.Readable instance", () => {
+        it("should return a Promise instance", () => {
             const AwsS3Storage = require(`${rootdir}/lib/storage/AwsS3Storage`);
 
             const storage = new AwsS3Storage(
@@ -106,7 +106,23 @@ describe("AwsS3Storage", () => {
             );
 
             const actual = storage.createReadStream("/path/to/resource");
-            expect(actual).to.be.an.instanceof(Readable);
+            expect(actual).to.be.a("Promise");
+        });
+
+        it("should resolve to a stream.Readable instance", () => {
+            const AwsS3Storage = require(`${rootdir}/lib/storage/AwsS3Storage`);
+
+            const storage = new AwsS3Storage(
+                "/path/to/base",
+                "TESTACCESSKEYID",
+                "TestSecretAccessKey",
+                "test-bucket",
+                "us-east-1"
+            );
+
+            return storage
+                .createReadStream("/path/to/resource")
+                .then(actual => expect(actual).be.an.instanceof(Readable));
         });
 
         it("should call AWS.S3.getObject() with expected arguments", () => {

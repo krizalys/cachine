@@ -35,11 +35,20 @@ describe("FileSystemStorage", () => {
     });
 
     describe("#createReadStream()", () => {
-        it("should return a stream.Readable instance", () => {
+        it("should return a Promise instance", () => {
             const FileSystemStorage = require(`${rootdir}/lib/storage/FileSystemStorage`);
             const storage           = new FileSystemStorage("/path/to/base");
             const actual            = storage.createReadStream("/path/to/resource");
-            expect(actual).to.be.an.instanceof(Readable);
+            expect(actual).to.be.a("Promise");
+        });
+
+        it("should resolve to a stream.Readable instance", () => {
+            const FileSystemStorage = require(`${rootdir}/lib/storage/FileSystemStorage`);
+            const storage           = new FileSystemStorage("/path/to/base");
+
+            return storage
+                .createReadStream("/path/to/resource")
+                .then(actual => expect(actual).to.be.an.instanceof(Readable));
         });
     });
 
