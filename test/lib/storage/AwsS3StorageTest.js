@@ -147,7 +147,7 @@ describe("AwsS3Storage", () => {
             return storage
                 .stat("/path/to/resource")
                 .then(() => expect(http.request).to.have.been.calledWith({
-                    hostname: "test-buck.et.s3-website-us-east-1.amazonaws.com",
+                    hostname: "test-buck.et.s3-website.us-east-1.amazonaws.com",
                     path:     "/path/to/base/path/to/resource",
                     method:   "HEAD",
                 }));
@@ -253,7 +253,7 @@ describe("AwsS3Storage", () => {
             return storage
                 .createReadStream("/path/to/resource")
                 .then(() => expect(http.request).to.have.been.calledWith({
-                    hostname: "test-buck.et.s3-website-us-east-1.amazonaws.com",
+                    hostname: "test-buck.et.s3-website.us-east-1.amazonaws.com",
                     path:     "/path/to/base/path/to/resource",
                 }));
         });
