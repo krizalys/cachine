@@ -2,6 +2,7 @@
     "name":        "cachine",
     "version":     "1.0.0-alpha.4",
     "description": "Krizalys' Cachine service.",
+    "license":     "BSD-3-Clause",
     "homepage":    "http://www.krizalys.com/",
 
     "keywords": [
